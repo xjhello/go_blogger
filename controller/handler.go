@@ -147,10 +147,10 @@ func UploadFile(c *gin.Context) {
 	}
 	log.Println(file.Filename)
 	rootPath := utils.GetRootDir()
-	u2, err := uuid.NewV4()
-	if err != nil {
-		return
-	}
+	u2 := uuid.NewV4()
+	// if err != nil {
+	// 	return
+	// }
 	ext := path.Ext(file.Filename)
 	url := fmt.Sprintf("/static/upload/%s%s", u2, ext)
 	dst := filepath.Join(rootPath, url)

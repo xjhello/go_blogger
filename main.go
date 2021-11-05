@@ -3,16 +3,20 @@ package main
 import (
 	"blogger/controller"
 	"blogger/dao/db"
+	"fmt"
+
 	"github.com/DeanThompson/ginpprof"
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	router := gin.Default()
-	dns := "root:admin@tcp(localhost:3306)/blogger?parseTime=true"
+	dns := "root:123@tcp(localhost:3306)/go_blogger?parseTime=true"
 	err := db.Init(dns)
 	if err != nil {
+		fmt.Println("db connect error!")
 		panic(err)
+
 	}
 	ginpprof.Wrapper(router)
 	router.Static("/static/", "./static")
